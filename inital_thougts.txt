@@ -1,0 +1,29 @@
+
+
+### PAGES
+
+Login / Login
+
+Main Page (logged in)
+- immediately shows all contacts in a simple list form
+  - Full name
+  - Phone number
+- search function
+  - search for name
+  - search for contact detail
+- Add new contact
+  - Show new contact form
+
+Specific contact (upon click on main page)
+  - Show all details
+  - Add new contact detail
+  - Edit contact detail
+  - Delete contact detail
+  - Delete contact
+
+
+
+  ### TODO today
+- route index page
+- define classes needed
+- show a contact from yaml file on 'contacts'-page
