@@ -29,17 +29,19 @@ end
 
 - Contacts page
   - Let contacts show
-  
-
-
 =end
 
 #########################################################
 ######################## METHODS ########################
 #########################################################
 
-def load_yaml(file)
-  YAML.load_file(file)
+def data_path
+  case ENV['RACK_ENV']
+  when 'test'
+    'test/data/contacts_db.yaml'
+  else
+    'data/contacts_db.yaml'
+  end
 end
 
 #########################################################
@@ -54,11 +56,23 @@ get '/login' do
 end
 
 get '/contacts' do
-  @contacts_data = load_yaml('data/contacts_db.yaml')
-  @contacts = Contacts.new(@contacts_data)
-
-  
-  binding.pry
+  @contacts = Contacts.new(data_path)
 
   erb :contacts, layout: :layout
+end
+
+get '/contacts/add' do
+
+  erb :add_contact, layout: :layout
+end
+
+post '/contacts/add' do
+  if params[:nick_name].empty?
+    erb :add_contact, layout: :layout
+  else
+    contacts = Contacts.new(data_path) # load contacts
+    contacts.add_contact(params) # add contact
+    contacts.update(data_path) # update contacts (save to yaml bts)
+    redirect '/contacts'
+  end
 end

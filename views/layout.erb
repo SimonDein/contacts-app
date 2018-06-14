@@ -1,8 +1,15 @@
 <html>
 <head>
   <title>Your Contacts</title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 </head>
 <body>
-  <%== yield %>
+  <div class="header">
+    <%== yield_content :header %>
+  </div>
+
+  <div class="primary-content">
+    <%== yield %>
+  </div>
 </body>
 </html>

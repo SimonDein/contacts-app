@@ -1,0 +1,89 @@
+/* Base Styles -------------------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #515151;
+  margin: 0;
+  font: 1em/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 100;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+form input {
+  background: #F5F5F5;
+  display: block;
+  width: 100%;
+  padding: 1.2em 2em;
+  margin-bottom: 1em;
+  font-size: 1.2em;
+  border: none;
+  box-shadow: inset 0 1px 3px 0 rgba(116,116,116,0.14);
+  border-radius: 4px;
+}
+
+a {
+  color: #515151;
+  text-decoration: none;
+}
+
+/* Pseudo-classes ------------------ */
+.tile a,
+form > button {
+  color: #515151;
+  display: block;
+  box-shadow: inset 0 -1px 3px 0 rgba(116,116,116,0.14);
+  width: 100%;
+  padding: 1.2em 1em;
+  border: none;
+}
+
+.tile a:hover {
+  background: #ECECEC;
+}
+
+/* Main Styles --------------------- */
+.primary-content {
+  width: 75%;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin: auto;
+  max-width: 960px;
+}
+
+.header {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.tile {
+  color: #7B7B7B;
+  background: #F5F5F5;
+  font-size: 1.2em;
+  text-transform: capitalize;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  display: block;
+  width: 100%;
+}
+
+.no-padding {
+  padding: 0px;
+}
+
+.thin {
+  font-weight: 300;
+}
+
+.bold {
+  font-weight: 400;
+}

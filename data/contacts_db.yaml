@@ -1,4 +1,9 @@
 ---
-dwight:
+the dwight:
+  full_name: dwight schrute
   phone: 12345678
   email: dwight@dundermifflin.com
+mamma:
+  full_name: mommma bear
+  phone: 34112345
+  email: momma_bear@bearmail.com

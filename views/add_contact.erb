@@ -1,0 +1,11 @@
+<% content_for :header do %>
+  <h1>Add Contact</h1>
+<% end %>
+
+<form method="post" action="/contacts/add">
+  <input name="nick_name" placeholder="Nick Name" type="text">
+  <input name="full_name" placeholder="Full Name" type="text">
+  <input name="email" placeholder="Email" type="text">
+  <input name="phone" placeholder="Phone" type="text">
+  <button class="tile submit">submit</button>
+</form>

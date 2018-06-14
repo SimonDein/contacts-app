@@ -1,5 +1,15 @@
-<ul>
-  <% @contacts.details.each do |contact| %>
-    <li><%= contact %></li>
+<% content_for :header do %>
+  <h1>Contacts</h1>
+<% end %>
+
+<ul class="no-padding">
+  <% @contacts.each do |nick_name, _| %>
+    <li class="tile thin">
+      <a href="#"><%= nick_name %></a>
+    </li>
   <% end %>
+
+  <li class="tile bold">
+    <a href="/contacts/add">+ Add Contact</a>
+  </li>
 </ul>
