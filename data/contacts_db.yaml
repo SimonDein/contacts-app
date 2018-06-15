@@ -1,9 +1,47 @@
 ---
-the dwight:
-  full_name: dwight schrute
-  phone: 12345678
+The Dwight: !ruby/object:Contact
+  details:
+    full_name: Dwight Schrute
+    phone: 12345678
+    email: dwight@dundermifflin.com
+    address: 
+  full_name: Dwight Schrute
+  phone: '12345678'
   email: dwight@dundermifflin.com
-mamma:
-  full_name: mommma bear
-  phone: 34112345
+  address: 
+Mamma: !ruby/object:Contact
+  details:
+    full_name: Mommma Bear
+    phone: 34112345
+    email: momma_bear@bearmail.com
+  full_name: Mommma Bear
+  phone: '34112345'
   email: momma_bear@bearmail.com
+  address: 
+Superman: !ruby/object:Contact
+  details:
+    full_name: Super Man Jr.
+    email: superman@supermail.com
+    phone: has no phone
+  full_name: Super Man Jr.
+  phone: has no phone
+  email: superman@supermail.com
+  address: 
+a: !ruby/object:Contact
+  details: !ruby/hash:Sinatra::IndifferentHash
+    full_name: b
+    email: c
+    phone: d
+  full_name: b
+  phone: d
+  email: c
+  address: 
+the lord: !ruby/object:Contact
+  details: !ruby/hash:Sinatra::IndifferentHash
+    full_name: Jesus Christ
+    email: jesus@heaven.com
+    phone: Too cool to phone
+  full_name: Jesus Christ
+  phone: Too cool to phone
+  email: jesus@heaven.com
+  address: 

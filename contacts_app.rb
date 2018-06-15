@@ -44,6 +44,10 @@ def data_path
   end
 end
 
+def titleize(str)
+  str.split.map(&:capitalize).join(' ')
+end
+
 #########################################################
 ######################## ROUTES #########################
 #########################################################
@@ -63,8 +67,20 @@ end
 
 get '/contacts/add' do
 
+  # make sure to capitalize names
+  
   erb :add_contact, layout: :layout
 end
+
+get '/contacts/:nick_name' do
+  @nick_name = params[:nick_name]
+  
+  contacts = Contacts.new(data_path)
+  @contact = contacts.get_user(@nick_name)
+
+  erb :view_contact, layout: :layout
+end
+
 
 post '/contacts/add' do
   if params[:nick_name].empty?

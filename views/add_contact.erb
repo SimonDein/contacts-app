@@ -2,10 +2,18 @@
   <h1>Add Contact</h1>
 <% end %>
 
+<% content_for :nav do %>
+  <ul class="no-padding nav">
+    <li class="tile menu-button bold float-left">
+      <a class="button-pad" href="/contacts">Go Back</a>
+    </li>
+  </ul>
+<% end %>
+
 <form method="post" action="/contacts/add">
   <input name="nick_name" placeholder="Nick Name" type="text">
   <input name="full_name" placeholder="Full Name" type="text">
   <input name="email" placeholder="Email" type="text">
   <input name="phone" placeholder="Phone" type="text">
-  <button class="tile submit">submit</button>
+  <button class="tile tile-pad bold">submit</button>
 </form>

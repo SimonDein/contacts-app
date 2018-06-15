@@ -1,0 +1,33 @@
+<% content_for :header do %>
+  <h1><%= @nick_name %></h1>
+<% end %>
+
+<% content_for :nav do %>
+  <ul class="no-padding nav">
+    <li class="tile menu-button bold float-left">
+      <a class="button-pad" href="/contacts">Go Back</a>
+    </li>
+    <li class="tile menu-button bold float-right">
+      <a class="button-pad" href="#">Log Out</a>
+    </li>
+  </ul>
+<% end %>
+
+<ul class="no-padding">
+  <li class="tile tile-pad">
+    <span>Full Name</span>
+    <%= @contact.full_name %>
+  </li>
+  <li class="tile tile-pad">
+    <span>Phone</span>
+    <%= @contact.phone %>
+  </li>
+  <li class="tile tile-pad">
+    <span>Email</span>
+    <%= @contact.email %>
+  </li>
+  <li class="tile tile-pad">
+    <span>Address</span>
+    <%= @contact.address %>
+  </li>
+</ul>
