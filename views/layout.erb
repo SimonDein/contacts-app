@@ -8,8 +8,14 @@
     <%== yield_content :header %>
   </div>
 
-
   <div class="primary-content">
+    <% if session[:success] %>
+      <p class="message success"><%= session.delete(:success) %></p>
+    <% end %>
+
+    <% if session[:error] %>
+      <p class="message error"><%= session.delete(:error) %></p>
+    <% end %>
 
     <div class="nav">
       <%== yield_content :nav %>

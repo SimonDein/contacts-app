@@ -18,17 +18,16 @@ end
 =begin
 ############### TODO ##########
 ###############################
+- Edit contact
 
-- Define a ruby object oriented interface for contacts
-
-- Index page
+- Sign in
   - if logged in
       - redirect to contacts
   - else
       - redirect to login
 
-- Contacts page
-  - Let contacts show
+- Search function
+    - ajax
 =end
 
 #########################################################
@@ -59,12 +58,14 @@ end
 get '/login' do
 end
 
+# View all contacts
 get '/contacts' do
   @contacts = Contacts.new(data_path)
 
   erb :contacts, layout: :layout
 end
 
+# View "contact"
 get '/contacts/add' do
 
   # make sure to capitalize names
@@ -72,6 +73,20 @@ get '/contacts/add' do
   erb :add_contact, layout: :layout
 end
 
+# View edit contact
+get '/contacts/edit/:nick_name' do
+  @nick_name = params[:nick_name]
+  contact = Contacts.new(data_path).get_user(@nick_name)
+  
+  @full_name = contact.full_name
+  @email = contact.email
+  @phone = contact.phone
+  @adress = contact.address
+  
+  erb :edit_contact, layout: :layout
+end
+
+# View specific contact
 get '/contacts/:nick_name' do
   @nick_name = params[:nick_name]
   
@@ -81,14 +96,33 @@ get '/contacts/:nick_name' do
   erb :view_contact, layout: :layout
 end
 
-
+# Submit added contact
 post '/contacts/add' do
-  if params[:nick_name].empty?
+  nick_name = params[:nick_name]
+  if nick_name.empty?
+    session[:error] = "You didn't provide a name for the contact."
     erb :add_contact, layout: :layout
   else
     contacts = Contacts.new(data_path) # load contacts
     contacts.add_contact(params) # add contact
     contacts.update(data_path) # update contacts (save to yaml bts)
+    session[:success] = "'#{nick_name}' added to contacts."
+    redirect '/contacts'
+  end
+end
+
+# Submit edited contact
+post '/contacts/edit/:old_nick_name' do
+  nick_name = params[:nick_name]
+  if nick_name.empty?
+    session[:error] = "You left 'nick name' empty."
+    erb :edit_contact, layout: :layout
+  else
+    contacts = Contacts.new(data_path) # load contacts
+    binding.pry
+    contacts.add_contact(params) # add contact
+    contacts.update(data_path) # update contacts (save to yaml bts)
+    session[:success] = "'#{nick_name}' has been updated"
     redirect '/contacts'
   end
 end

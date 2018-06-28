@@ -1,0 +1,23 @@
+<% content_for :header do %>
+  <h1><%= @nick_name %></h1>
+<% end %>
+
+<% content_for :nav do %>
+  <ul class="no-padding nav">
+    <li class="tile menu-button bold float-left">
+      <a class="button-pad" href="/contacts/<%= @nick_name %>">Go Back</a>
+    </li>
+    <li class="tile menu-button bold float-right">
+      <a class="button-pad" href="#">Log Out</a>
+    </li>
+  </ul>
+<% end %>
+
+<form method="post" action="/contacts/edit/<%= @nick_name %>">
+  <span>Nick Name</span><input name="nick_name" value="<%= @nick_name %>">
+  <span>Full Name</span><input name="full_name" value="<%= @full_name %>">
+  <span>Phone</span><input name="phone" value="<%= @phone %>">
+  <span>Email</span><input name="email" value="<%= @email %>">
+  <span>Address</span><input name="address" value="<%= @address %>">
+  <button class="tile tile-pad bold">submit</button>
+</form>

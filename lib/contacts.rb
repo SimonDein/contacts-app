@@ -18,11 +18,14 @@ class Contacts
 
   def add_contact(details)
     @all_contacts[details.delete('nick_name')] = Contact.new(details)
-    binding.pry
   end
 
   def update(path)
     File.open(path, 'w') { |f| YAML.dump(@all_contacts, f) }
+  end
+  
+  def update_contact(details)
+    
   end
   
   private
@@ -37,7 +40,7 @@ end
 # Each "Contact" represents an individual contact with its information
 class Contact
   attr_reader :details
-  attr_accessor :nick_name, :full_name, :phone, :email, :address
+  attr_accessor :full_name, :phone, :email, :address
   
   def initialize(details)
     @details = details

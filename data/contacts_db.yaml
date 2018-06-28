@@ -19,14 +19,15 @@ Mamma: !ruby/object:Contact
   email: momma_bear@bearmail.com
   address: 
 Superman: !ruby/object:Contact
-  details:
+  details: !ruby/hash:Sinatra::IndifferentHash
     full_name: Super Man Jr.
-    email: superman@supermail.com
     phone: has no phone
+    email: superman@supermail.com
+    address: ''
   full_name: Super Man Jr.
   phone: has no phone
   email: superman@supermail.com
-  address: 
+  address: ''
 a: !ruby/object:Contact
   details: !ruby/hash:Sinatra::IndifferentHash
     full_name: b
@@ -45,3 +46,50 @@ the lord: !ruby/object:Contact
   phone: Too cool to phone
   email: jesus@heaven.com
   address: 
+Hey: !ruby/object:Contact
+  details: !ruby/hash:Sinatra::IndifferentHash
+    full_name: ''
+    email: ''
+    phone: ''
+  full_name: ''
+  phone: ''
+  email: ''
+  address: 
+Another one: !ruby/object:Contact
+  details: !ruby/hash:Sinatra::IndifferentHash
+    full_name: ''
+    email: ''
+    phone: ''
+  full_name: ''
+  phone: ''
+  email: ''
+  address: 
+What a name!: !ruby/object:Contact
+  details: !ruby/hash:Sinatra::IndifferentHash
+    full_name: ''
+    email: ''
+    phone: ''
+  full_name: ''
+  phone: ''
+  email: ''
+  address: 
+Frans: !ruby/object:Contact
+  details: !ruby/hash:Sinatra::IndifferentHash
+    full_name: ''
+    email: ''
+    phone: ''
+  full_name: ''
+  phone: ''
+  email: ''
+  address: 
+Batman: !ruby/object:Contact
+  details: !ruby/hash:Sinatra::IndifferentHash
+    full_name: Super Man Jr.
+    phone: has no phone
+    email: superman@supermail.com
+    address: ''
+    old_nick_name: Superman
+  full_name: Super Man Jr.
+  phone: has no phone
+  email: superman@supermail.com
+  address: ''
