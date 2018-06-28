@@ -5,15 +5,16 @@
 <% content_for :nav do %>
   <ul class="no-padding nav">
     <li class="tile menu-button bold float-left">
-      <a class="button-pad" href="/contacts">Go Back</a>
+      <a class="button-pad" href="/contacts">Go back</a>
     </li>
   </ul>
 <% end %>
 
 <form method="post" action="/contacts/add">
-  <input name="nick_name" placeholder="Nick Name" type="text">
-  <input name="full_name" placeholder="Full Name" type="text">
-  <input name="email" placeholder="Email" type="text">
-  <input name="phone" placeholder="Phone" type="text">
+  <input class="text-align-center" name="nick_name" placeholder="Nick Name" type="text">
+  <input class="text-align-center" name="full_name" placeholder="Full Name" type="text">
+  <input class="text-align-center" name="email" placeholder="Email" type="text">
+  <input class="text-align-center" name="phone" placeholder="Phone" type="text">
+  <input class="text-align-center" name="address" placeholder="Address" type="text">
   <button class="tile tile-pad bold">submit</button>
 </form>

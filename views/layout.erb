@@ -17,6 +17,8 @@
       <p class="message error"><%= session.delete(:error) %></p>
     <% end %>
 
+    <%== yield_content :profile_picture %>
+
     <div class="nav">
       <%== yield_content :nav %>
     </div>

@@ -5,19 +5,24 @@
 <% content_for :nav do %>
   <ul class="no-padding nav">
     <li class="tile menu-button bold float-left">
-      <a class="button-pad" href="/contacts/<%= @nick_name %>">Go Back</a>
+      <a class="button-pad" href="/contacts/<%= @id %>">Go Back</a>
     </li>
     <li class="tile menu-button bold float-right">
-      <a class="button-pad" href="#">Log Out</a>
+      <a class="button-pad" href="/logout">Log out</a>
     </li>
   </ul>
 <% end %>
 
-<form method="post" action="/contacts/edit/<%= @nick_name %>">
-  <span>Nick Name</span><input name="nick_name" value="<%= @nick_name %>">
-  <span>Full Name</span><input name="full_name" value="<%= @full_name %>">
-  <span>Phone</span><input name="phone" value="<%= @phone %>">
-  <span>Email</span><input name="email" value="<%= @email %>">
-  <span>Address</span><input name="address" value="<%= @address %>">
+<form method="post" action="/contacts/edit/<%= @id %>">
+  <span class="tag">Nick Name</span>
+  <input class="text-align-center" name="nick_name" value="<%= @contact.nick_name %>">
+  <span class="tag">Full Name</span>
+  <input class="text-align-center" name="full_name" value="<%= @contact.full_name %>">
+  <span class="tag">Phone</span>
+  <input class="text-align-center" name="phone" value="<%= @contact.phone %>">
+  <span class="tag">Email</span>
+  <input class="text-align-center" name="email" value="<%= @contact.email %>">
+  <span class="tag">Address</span>
+  <input class="text-align-center" name="address" value="<%= @contact.address %>">
   <button class="tile tile-pad bold">submit</button>
 </form>

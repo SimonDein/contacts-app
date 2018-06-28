@@ -5,15 +5,15 @@
 <% content_for :nav do %>
   <ul class="no-padding nav">
     <li class="tile menu-button bold float-right">
-      <a class="button-pad" href="#">Log Out</a>
+      <a class="button-pad" href="/logout">Log out</a>
     </li>
   </ul>
 <% end %>
 
 <ul class="no-padding">
-  <% @contacts.each do |nick_name, _| %>
+  <% @contacts.each do |id, details| %>
     <li class="tile">
-      <a class="tile-pad" href="/contacts/<%= nick_name %>"><%= nick_name %></a>
+      <a class="tile-pad" href="/contacts/<%= id %>"><%= details.nick_name %></a>
     </li>
   <% end %>
 

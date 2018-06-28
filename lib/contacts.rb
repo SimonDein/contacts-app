@@ -1,34 +1,46 @@
 # Contacts hold on to several instances of "Contact" in a hash
 class Contacts
   attr_reader :all_contacts
-  
+
   def initialize(path)
     @all_contacts = load_contacts(path) # {}
   end
 
-  def get_user(nick_name)
-    @all_contacts[nick_name]
+  def get_user(id)
+    all_contacts[id.to_i]
   end
 
-  def each
-    all_contacts.each do |nick_name, details|
-      yield(nick_name, details)
-    end
+  def remove_contact(id)
+    all_contacts.delete(id.to_i)
   end
 
   def add_contact(details)
-    @all_contacts[details.delete('nick_name')] = Contact.new(details)
+    id = detect_next_id
+    @all_contacts[id] = Contact.new(details)
   end
 
-  def update(path)
+  def update_contact(id, details)
+    @all_contacts[id.to_i] = Contact.new(details)
+  end
+
+  def each
+    all_contacts.each do |id, details|
+      yield(id, details)
+    end
+  end
+
+  def update!(path)
     File.open(path, 'w') { |f| YAML.dump(@all_contacts, f) }
   end
-  
-  def update_contact(details)
-    
-  end
-  
+
   private
+
+  def detect_next_id
+    return 1 if @all_contacts.empty?
+    
+    current_max_id = @all_contacts.keys.max
+    current_max_id + 1
+  end
 
   def load_contacts(path)
     loaded_contacts_db = YAML.load_file(path)
@@ -40,14 +52,19 @@ end
 # Each "Contact" represents an individual contact with its information
 class Contact
   attr_reader :details
-  attr_accessor :full_name, :phone, :email, :address
+  attr_accessor :full_name, :phone, :email, :address, :nick_name
   
   def initialize(details)
-    @details = details
-
-    @full_name = details['full_name']
+    @nick_name = titleize(details['nick_name'])
+    @full_name = titleize(details['full_name'])
     @phone = details['phone']
-    @email = details['email']
-    @address = details['address']
+    @email = details['email'].downcase
+    @address = titleize(details['address'])
+  end
+
+  private
+
+  def titleize(str)
+    str.split.map(&:capitalize).join(' ')
   end
 end

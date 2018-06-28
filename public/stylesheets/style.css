@@ -48,12 +48,25 @@ button {
   width: 100%;
 }
 
+img {
+  display: block;
+  object-fit: cover;
+  height: 200px;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+
 element::-webkit-input-placeholder,
 element::-moz-placeholder,
 element:-ms-input-placeholder {
   color: blue;
   font-weight: bold;
 }
+
 /* Pseudo-classes ------------------ */
 .tile a,
 form button{
@@ -71,6 +84,7 @@ form button{
 .tile a:hover,
 button:hover {
   background: #ECECEC;
+  border-radius: 4px;
 }
 
 /* Main Styles --------------------- */
@@ -112,7 +126,6 @@ button:hover {
   color: #515151;
   background: #F5F5F5;
   font-size: 1.2em;
-  text-transform: capitalize;
   border-radius: 4px;
   margin-bottom: 4px;
   display: block;
@@ -147,10 +160,17 @@ button:hover {
   padding: 0px;
 }
 
-.thin {
-  
+.text-align-center {
+  text-align: center;
 }
 
 .bold {
   font-weight: 400;
+}
+
+.tag {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0.5em;
 }
