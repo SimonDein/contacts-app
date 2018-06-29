@@ -1,3 +1,7 @@
 ---
-simon: "$2a$10$JYehdeZhw23BSWNKutj/Yepx4cVciYOM5f6W48ZB8ZppnVAZzsl96"
-test_user: "$2a$10$HsgNsnU7L2.qZIcPleKhg.M4Ig9nw.WqAirQfDJQ7T638Cn0YoPPS"
+simon: !ruby/string:BCrypt::Password
+  str: "$2a$10$nX1o0mvHy/9P5bKHcVTGg.tGkZwRR5Wowq/WvZB7FowXTJ7brLuHa"
+  version: 2a
+  cost: 10
+  salt: "$2a$10$nX1o0mvHy/9P5bKHcVTGg."
+  checksum: tGkZwRR5Wowq/WvZB7FowXTJ7brLuHa

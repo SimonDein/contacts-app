@@ -1,7 +1,0 @@
----
-1: !ruby/object:Contact
-  nick_name: Superman
-  full_name: Superman Jr
-  phone: '3094023'
-  email: clark.kent@outerspace.com
-  address: Slvjlasf

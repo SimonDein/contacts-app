@@ -1,0 +1,9 @@
+<% content_for :header do %>
+  <h1>Sign up</h1>
+<% end %>
+
+<form action="/signup" method="post">
+  <input class="text-align-center" name="user_name" placeholder="Choose a user name" value="<%= @user_name %>">
+  <input class="text-align-center" type="password" name="password" placeholder="Choose a password" value="<%= @password %>">
+  <button class="tile tile-pad bold">Sign up</button>
+</form>
