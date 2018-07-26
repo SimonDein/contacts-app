@@ -1,8 +1,9 @@
 # Contacts hold on to several instances of "Contact" in a hash
 class Contacts
-  attr_reader :all_contacts
+  attr_reader :all_contacts, :path
 
   def initialize(path)
+    @path = path
     @all_contacts = load_contacts(path) # {}
   end
 
@@ -10,17 +11,23 @@ class Contacts
     all_contacts[id.to_i]
   end
 
-  def remove_contact(id)
+  def remove_contact!(id)
     all_contacts.delete(id.to_i)
+
+    update_contacts!
   end
 
-  def add_contact(details)
+  def add_contact!(details)
     id = detect_next_id
     @all_contacts[id] = Contact.new(details)
+    
+    update_contacts!
   end
 
-  def update_contact(id, details)
+  def update_contact!(id, details)
     @all_contacts[id.to_i] = Contact.new(details)
+
+    update_contacts!
   end
 
   def each
@@ -29,11 +36,11 @@ class Contacts
     end
   end
 
-  def update!(path)
-    File.open(path, 'w') { |f| YAML.dump(@all_contacts, f) }
-  end
-
   private
+
+  def update_contacts!
+    File.open(@path, 'w') { |f| YAML.dump(@all_contacts, f) }
+  end
 
   def detect_next_id
     return 1 if @all_contacts.empty?

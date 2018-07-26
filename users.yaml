@@ -1,7 +1,13 @@
 ---
 simon: !ruby/string:BCrypt::Password
-  str: "$2a$10$nX1o0mvHy/9P5bKHcVTGg.tGkZwRR5Wowq/WvZB7FowXTJ7brLuHa"
+  str: "$2a$10$L1dAjJFM88tVU29nuCS.6e7EYdxb1ia0.RCNhgc4pwz5ezIk5WzCq"
   version: 2a
   cost: 10
-  salt: "$2a$10$nX1o0mvHy/9P5bKHcVTGg."
-  checksum: tGkZwRR5Wowq/WvZB7FowXTJ7brLuHa
+  salt: "$2a$10$L1dAjJFM88tVU29nuCS.6e"
+  checksum: 7EYdxb1ia0.RCNhgc4pwz5ezIk5WzCq
+'': !ruby/string:BCrypt::Password
+  str: "$2a$10$E.mdgv8MQkHqv3gSywAN7.RKnrUqfaBZkigWNAziGyR6F13ouMi3i"
+  version: 2a
+  cost: 10
+  salt: "$2a$10$E.mdgv8MQkHqv3gSywAN7."
+  checksum: RKnrUqfaBZkigWNAziGyR6F13ouMi3i
