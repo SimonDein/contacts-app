@@ -14,15 +14,12 @@ require_relative 'lib/contacts.rb'
 ############### TODO #############
 ##################################
 
-- Sign up
-
-- Sort contacts by alphabetical order
-  - ascending or descending
 
 ##### FURTHER DEVELOPMENT
 - Profile pictures
-  - Fix src in img for view_contact.erb (already started work)
-  - 
+
+- Sort contacts by alphabetical order
+  - ascending or descending
 
 - Search function
     - ajax
@@ -142,11 +139,18 @@ def remove_user!(user_name)
   File.open(credentials_path, 'w') { |f| YAML.dump(loaded_credentials, f) }
 end
 
+def return_if_contact_does_not_exist(contact)
+  if contact.nil?
+    session[:error] = "Sorry, it seems like the contact doesn't exist."
+    redirect '/contacts'
+  end
+end
+
 #########################################################
 ######################## ROUTES #########################
 #########################################################
+# redirect to '/login' if user not logged in
 get '/' do
-  # redirect to '/login' if user not logged in
   if user_logged_in?
     redirect '/contacts'
   else
@@ -190,21 +194,25 @@ get '/contacts/edit/:id' do
   @id = params[:id]
   @contact = Contacts.new(user_data_path).get_user(@id)
 
+  return_if_contact_does_not_exist(@contact)
+  
   @nick_name = @contact.nick_name
   @full_name = @contact.full_name
   @email = @contact.email
   @phone = @contact.phone
   @address = @contact.address
-
+  
   erb :edit_contact, layout: :layout
 end
 
 # View specific contact
 get '/contacts/:id' do
   require_user_logged_in
-
+  
   @id = params[:id]
   @contact = Contacts.new(user_data_path).get_user(@id)
+
+  return_if_contact_does_not_exist(@contact)
 
   erb :view_contact, layout: :layout
 end
@@ -215,7 +223,10 @@ get '/contacts/delete/:id' do
 
   id = params[:id]
   contacts = Contacts.new(user_data_path)
-  nick_name = contacts.get_user(id).nick_name
+  contact = contacts.get_user(id)
+  return_if_contact_does_not_exist(contact)
+  
+  nick_name = contact.nick_name
 
   contacts.remove_contact!(id)
 
@@ -259,7 +270,7 @@ post '/contacts/edit/:id' do
   else
     contacts = Contacts.new(user_data_path)
     contacts.update_contact!(id, params)
-    session[:success] = "'#{@nick_name}' has been updated"
+    session[:success] = "'#{@nick_name}' has been updated."
 
     redirect '/contacts'
   end
@@ -293,7 +304,3 @@ post '/signup' do
     redirect '/login'
   end
 end
-
-#########################################################
-##################### VIEW HELPERS ######################
-#########################################################

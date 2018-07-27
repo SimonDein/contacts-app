@@ -150,4 +150,70 @@ class TestContactsApp < Minitest::Test
     assert_equal(200, last_response.status)
     assert_includes(last_response.body, 'Login')
   end
+
+  def test_adding_contact
+    contact_information = {nick_name: 'Superman', full_name: 'Clark Kent',
+                           email: 'superman@heromail.com', phone: '12345678',
+                           address: 'Kryptonstreet 1, 0001 Krypton'}
+    post '/contacts/add', contact_information, admin_session
+    assert_equal(302, last_response.status)
+
+    get last_response['Location']
+    assert_includes(last_response.body, 'Superman')
+    assert_includes(last_response.body, "'Superman' has been added to contacts.")
+
+    get '/contacts/1'
+    assert_equal(200, last_response.status)
+    assert_includes(last_response.body, 'Superman')
+    assert_includes(last_response.body, 'Clark Kent')
+    assert_includes(last_response.body, 'superman@heromail.com')
+    assert_includes(last_response.body, '12345678')
+    assert_includes(last_response.body, 'Kryptonstreet 1, 0001 Krypton')
+  end
+
+  def test_editing_contact
+    contact_information = {nick_name: 'Superman', full_name: 'Clark Kent',
+      email: 'superman@heromail.com', phone: '12345678',
+      address: 'Kryptonstreet 1, 0001 Krypton'}
+    post '/contacts/add', contact_information, admin_session
+
+    contact_information = {nick_name: 'Batman', full_name: 'Bruce Wayne',
+      email: 'bruce@wayne.com', phone: '87654321',
+      address: 'Mountain Drive 1007, Gotham'}
+    post '/contacts/edit/1', contact_information, admin_session
+    
+    assert_equal(302, last_response.status)
+    get last_response['Location']
+    assert_includes(last_response.body, 'Batman')
+    assert_includes(last_response.body, "'Batman' has been updated")
+
+    get '/contacts/1'
+    assert_equal(200, last_response.status)
+    assert_includes(last_response.body, 'Batman')
+    assert_includes(last_response.body, 'Bruce Wayne')
+    assert_includes(last_response.body, 'bruce@wayne.com')
+    assert_includes(last_response.body, '87654321')
+    assert_includes(last_response.body, 'Mountain Drive 1007, Gotham')
+  end
+
+  def test_removing_contact
+    contact_information = {nick_name: 'Superman', full_name: 'Clark Kent',
+      email: 'superman@heromail.com', phone: '12345678',
+      address: 'Kryptonstreet 1, 0001 Krypton'}
+    post '/contacts/add', contact_information, admin_session
+
+    assert_equal(302, last_response.status)
+    get last_response['Location']
+    assert_includes(last_response.body, 'Superman')
+    assert_includes(last_response.body, "'Superman' has been added to contacts")
+
+    get '/contacts/delete/1' , {}, admin_session
+    assert_equal(302, last_response.status)
+
+    get last_response['Location']
+    assert_equal(200, last_response.status)
+    assert_includes(last_response.body, "The contact 'Superman' has been removed")
+    get '/contacts', {}, admin_session
+    refute_includes(last_response.body, 'Superman')
+  end
 end
